@@ -1,51 +1,65 @@
 # location: spec/feature/integration_spec.rb
 require 'rails_helper'
 #integration test for book title attribute
-RSpec.describe 'Creating a book', type: :feature do
+RSpec.describe 'test valid book title', type: :feature do
 	scenario 'valid inputs' do
 		visit new_book_path
-		fill_in 'Title', with: 'harry potter'
+		fill_in 'book_title', with: 'Foundation'
+		fill_in 'book_author', with: 'Isaac Asimov'
+		fill_in 'Price', with: '12.99'
+		select '2020', :from => 'book_published_date_1i'
+		select 'August', :from => 'book_published_date_2i'
+		select '15', :from => 'book_published_date_3i'
 		click_on 'Create Book'
 		visit books_path
-		expect(page).to have_content('harry potter')
+		expect(page).to have_content('Foundation')
 	end
 end
 
-#=begin
 #integration test for author attribute (string)
-RSpec.describe 'Book with author', type: :feature do
+RSpec.describe 'test valid book author', type: :feature do
 	scenario 'valid inuputs' do
 		visit new_book_path
-		fill_in 'Author', with: 'Isaac Asimov'
-		click_on 'Create Book'
-		visit books_path
-		expect(page).to have_content('Isaac Asimov')
-	end
-end
-#=end
-
-#=begin
-#integration test for price (number)
-RSpec.describe 'Book with price', type: :feature do
-	scenario 'valid inputs' do
-		visit new_book_path
+		fill_in 'book_title', with: 'Foundation'
+		fill_in 'book_author', with: 'Isaac Asimov'
 		fill_in 'Price', with: '12.99'
+		select '2020', :from => 'book_published_date_1i'
+		select 'August', :from => 'book_published_date_2i'
+		select '15', :from => 'book_published_date_3i'
 		click_on 'Create Book'
 		visit books_path
-		expect(page).to have_content('12.99')
+		expect(page).to have_content('Foundation')
 	end
 end
-#=end
 
-#=begin
-#integration test for published date (Date)
-RSpec.describe 'Book with published date', type: :feature do
+#integration test for price (number)
+RSpec.describe 'test valid book price', type: :feature do
 	scenario 'valid inputs' do
 		visit new_book_path
-		fill_in 'Published_date', with: '2000-08-15'
+		fill_in 'book_title', with: 'Foundation'
+		fill_in 'book_author', with: 'Isaac Asimov'
+		fill_in 'Price', with: '12.99'
+		select '2020', :from => 'book_published_date_1i'
+		select 'August', :from => 'book_published_date_2i'
+		select '15', :from => 'book_published_date_3i'
 		click_on 'Create Book'
 		visit books_path
-		expect(page).to have_content('2000-08-15')
+		expect(page).to have_content('$12.99')
 	end
 end
-#=end
+
+#integration test for published date (Date)
+RSpec.describe 'test valid book published date', type: :feature do
+	scenario 'valid inputs' do
+		visit new_book_path
+		fill_in 'book_title', with: 'Foundation'
+		fill_in 'book_author', with: 'Isaac Asimov'
+		fill_in 'Price', with: '12.99'
+		select '2020', :from => 'book_published_date_1i'
+		select 'August', :from => 'book_published_date_2i'
+		select '15', :from => 'book_published_date_3i'
+		click_on 'Create Book'
+		visit books_path
+		expect(page).to have_content('2020/08/15')
+	end
+end

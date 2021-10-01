@@ -10,6 +10,14 @@
   <strong>Author:</strong>
   <%= @book.author %>
 </p>
+<p>
+  <strong>Price:</strong>
+  <%= sprintf('$%.2f', @book.price) %>
+</p>
+<p>
+  <strong>Date Published:</strong>
+  <%= @book.published_date %>
+</p>
 
 <%= link_to 'Edit Book Details', edit_book_path(@book) %> |
 <%= link_to 'Back to Home', books_path %>
