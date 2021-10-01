@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :books
   root 'books#index'
 
+  #resourceful route - add delete 
+  resources :books do
+    member do
+      get :delete
+    end
+  end
   #get 'books/index' #simple match route
   #get 'books/show'
 

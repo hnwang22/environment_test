@@ -1,19 +1,21 @@
 <p id="notice"><%= notice %></p>
-
+<center>
 <h1>Books</h1>
-<h1>Haoning Book Ruby-on-Rails</h1>
+<h1>Haoning Book Ruby-on-Rails Assignment</h1>
+
 
 <table>
   <thead>
     <tr>
       <th>Title</th>
-      <th colspan="3"></th>
       <th>Author</th>
-      <th colspan="3"></th>
+      <th>Actions</th>
+      <%#
       <th>Price</th>
       <th colspan="3"></th>
       <th>Published Date</th>
       <th colspan="3"></th>
+      %>
     </tr>
   </thead>
 
@@ -22,12 +24,15 @@
       <tr>
         <td><%= book.title %></td>
         <td><%= book.author %></td>
-        <td><%= book.price %></td>
-        <td><%= book.published_date %></td>
+        <%#<td><%= book.price ></td>%>
+        <%#<td><%= book.published_date ></td>%>
         <td class="actions">
-          <%= link_to 'Show', book %>
-          <%= link_to 'Edit', edit_book_path(book) %>
-          <%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to("Show", book_path(book), :class => 'action show') %>
+          <%= link_to('Edit', edit_book_path(book), :class => 'action edit') %>
+          <%= link_to('Delete', delete_book_path(book), :class => 'action delete') %>
+          <%#= link_to 'Show', book %>
+          <%#= link_to 'Edit', edit_book_path(book) %>
+          <%#= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %>
         </td>
       </tr>
     <% end %>
@@ -36,4 +41,5 @@
 
 <br>
 
-<%= link_to 'New Book', new_book_path %>
+<%= link_to 'Add New Book', new_book_path %>
+</center>
